@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: /hero.png
+avatar: /images/avatar.jpg
 # heroText: Hero 标题
 # tagline: Hero 副标题
 actionText: 开始使用

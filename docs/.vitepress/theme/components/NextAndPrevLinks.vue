@@ -2,21 +2,14 @@
 import { withBase } from 'vitepress'
 import ArrowLeft from './icons/ArrowLeft.vue'
 import ArrowRight from './icons/ArrowRight.vue'
+import { useNextAndPrevLinks } from '../composables/nextAndPrevLinks'
 
-const [prev, next] = [
-  {
-    text: '上一页',
-    link: '上一页链接地址...'
-  },
-  {
-    text: '下一页',
-    link: '下一页链接地址...'
-  }
-]
+const { hasLinks, prev, next } = useNextAndPrevLinks()
+
 </script>
 
 <template>
-  <div class="next-and-prev-link">
+  <div v-if="hasLinks" class="next-and-prev-link">
     <div class="container">
       <div class="prev">
         <a v-if="prev" class="link" :href="withBase(prev.link)">

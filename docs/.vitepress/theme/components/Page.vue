@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import PageHeader from './PageHeader.vue'
 import PageFooter from './PageFooter.vue'
 import NextAndPrevLinks from './NextAndPrevLinks.vue'
 </script>
@@ -8,6 +9,7 @@ import NextAndPrevLinks from './NextAndPrevLinks.vue'
     <div class="container">
       <slot name="top" />
 
+      <PageHeader />
       <Content class="content" />
       <PageFooter />
       <NextAndPrevLinks />
@@ -17,9 +19,25 @@ import NextAndPrevLinks from './NextAndPrevLinks.vue'
   </main>
 </template>
 
-<style lang="stylus">
-.container
-  margin 0 auto
-  padding 0 1.5rem 4rem
-  max-width 48rem
+<style scoped>
+.page {
+  padding-top: var(--header-height);
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0 1.5rem 4rem;
+  max-width: 48rem;
+}
+
+.content {
+  padding-bottom: 1.5rem;
+}
+
+@media (max-width: 420px) {
+  .content {
+    /* fix carbon ads display */
+    clear: both;
+  }
+}
 </style>

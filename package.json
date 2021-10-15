@@ -9,7 +9,14 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@types/node": "^16.11.0",
+    "fast-glob": "^3.2.7",
+    "gray-matter": "^4.0.3",
     "stylus": "^0.55.0",
     "vitepress": "^0.20.0"
+  },
+  "dependencies": {
+    "dayjs": "^1.10.7",
+    "lodash.orderby": "^4.6.0"
   }
 }

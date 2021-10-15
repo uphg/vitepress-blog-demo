@@ -1,4 +1,9 @@
 import { Route } from 'vitepress'
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime' 
+import 'dayjs/locale/zh-cn'
+dayjs.locale('zh-cn') 
+dayjs.extend(relativeTime)
 
 export const hashRE = /#.*$/
 export const extRE = /(index)?\.(md|html)$/
@@ -80,4 +85,18 @@ export function ensureEndingSlash(path: string): string {
  */
 export function removeExtention(path: string): string {
   return path.replace(/(index)?(\.(md|html))?$/, '') || '/'
+}
+
+/**
+ * 显示相对时间
+ * 在两年内显示相对时间，两年后显示绝对时间。
+ */
+export function displayTime(time: number): string {
+  if (!time) return '-'
+  const currentTime = new Date().getTime()
+  const oldTime = new Date(time).getTime()
+  const oneYear = 365 * 24 * 3600 * 1000
+  const lastYearToday = currentTime - oneYear
+
+  return oldTime - lastYearToday > 0 ? dayjs(time).fromNow() : dayjs(time).format('YYYY-MM-DD HH:mm')   /* 365 * 24 * 3600 * 1000 */
 }

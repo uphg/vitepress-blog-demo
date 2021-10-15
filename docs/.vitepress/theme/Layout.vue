@@ -6,22 +6,32 @@ import { useData } from 'vitepress'
 import NavBar from './components/NavBar.vue'
 import Home from './components/Home.vue'
 import Page from './components/Page.vue'
+import Archive from './components/Archive.vue'
+import Tags from './components/Tags.vue'
+import About from './components/About.vue'
 
 // generic state
-const { page, theme, frontmatter } = useData()
-console.log('page.value')
-console.log({...page.value})
-console.log('theme.value')
-console.log({...theme.value})
+const { frontmatter } = useData()
 
-// has home
-const enableHome = computed(() => !!frontmatter.value.home)
+const isCustomLayout = computed(() => !!frontmatter.value.customLayout)
+
+const mainContent = computed(() => {
+  if (!!frontmatter.value.home) return Home
+  if (!!frontmatter.value.isArchive) return Archive
+  if (!!frontmatter.value.isTags) return Tags
+  if (!!frontmatter.value.isAbout) return About
+  return Page
+})
+
 </script>
 
 <template>
   <div class="theme">
     <NavBar />
-    <Home v-if="enableHome" />
-    <Page v-else />
+
+    <Content v-if="isCustomLayout" />
+    <component v-else :is="mainContent"></component>
+
   </div>
+  <Debug />
 </template>

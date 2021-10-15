@@ -1,15 +1,45 @@
+import { createPages } from './utils/createPages'
+
+// import fs from 'fs'
+// import p from 'path'
+// import matter from 'gray-matter'
+import fg from 'fast-glob'
+
+// const fileNames = (filePath: string) => {
+//   return new Promise((resolve, reject) => {
+//     fs.readdir(filePath, (error, fileList) => {
+//       if (error) return reject(error)
+//       resolve(fileList)
+//     })
+//   })
+// }
+
+// console.log('fg')
+// console.log(fg)
+
+// const str = fs.readFileSync(p.resolve('./docs/example/one.md'), 'utf8');
+// console.log(matter(str));
+
 
 
 export default async () => {
+  const pagePaths = await fg(['docs/**/*.md']); // 获取所有 markdown 文件路径
+  const pages = createPages(pagePaths)
+  console.log('pages')
+  console.log(pages)
+
   return {
     title: 'Hello VitePress',
     description: 'Just playing around.',
     themeConfig: {
+      pages,
       // _blogs: blogs,
       // searchMaxSuggestions: 10,
       nav: [
         { text: '首页', link: '/' },
-        { text: '示例', link: '/example/' },
+        { text: '归档', link: '/archive/' },
+        { text: '标签', link: '/tags/' },
+        { text: '关于', link: '/about/' },
       ],
       sidebar: [
         {
