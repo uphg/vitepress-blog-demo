@@ -1,30 +1,50 @@
 <script setup lang="ts">
-// import { toRefs } from 'vue'
 import { displayTime } from '../utils'
+import { BlogType } from '../../utils/interface'
 
 defineProps<{
-  title: string
-  date: number
-  description: string
+  item: BlogType
 }>()
-
 </script>
 
 <template>
-  <div class="blog-item">
+  <a
+    class="blog-item"
+    :href="item.path"
+  >
     <h2 class="title-content">
-      <span class="title" :title="title">{{ title }}</span>
-      <span class="date">{{ displayTime(date) }}</span>
+      <span class="title" :title="item.title">{{ item.title }}</span>
     </h2>
-    <div class="summary">
-      <span>{{ description }}</span>
+    <div v-if="item.description" class="summary">
+      <span>{{ item.description }}</span>
     </div>
-  </div>
+    <div class="meta">
+      <template v-if="item.date">
+        <span class="date">{{ displayTime(item.date || 0) }}</span>
+        <span v-if="item.tags && item.tags.length > 0" class="divider"></span>
+      </template>
+      <template v-for="(tag, index) in item.tags" :key="index">
+        <span v-if="index !== 0" class="divider"></span>
+        <span class="tag-item">{{ tag }}</span>
+      </template>
+    </div>
+  </a>
 </template>
 
-<style scoped>
+<style scoped lang="stylus">
+@require '../styles/mixins'
+
 .blog-item {
-  margin-top: 36px;
+  padding: 16px 20px;
+  color: inherit;
+  text-decoration: inherit;
+  display: block;
+  border-radius: 5px;
+  /* margin-bottom: 1.5em; */
+  transition: background-color 0.25s;
+}
+.blog-item:hover {
+  background-color: rgba(0, 0, 0, 5%);
 }
 .title-content {
   margin: 0;
@@ -34,24 +54,28 @@ defineProps<{
   justify-content: space-between;
   align-items: flex-end;
 }
-.title-content .title {
-  width: calc(100% - 9em);
+.blog-item .title {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.title-content .date {
+.blog-item .meta {
+  padding-top: 8px;
   font-size: 16px;
-  color: #a6a6a6;
-  text-align: right;
-  /* width: 30%; */
-  width: 10em;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  color: #909090;
+  display: flex;
+  align-items: center;
+}
+.blog-item .divider {
+  divider-style()
 }
 .summary {
   color: #808080;
   padding-top: 10px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  line-height: 1.6;
 }
 </style>

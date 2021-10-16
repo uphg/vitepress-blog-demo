@@ -12,13 +12,13 @@ const { hasLinks, prev, next } = useNextAndPrevLinks()
   <div v-if="hasLinks" class="next-and-prev-link">
     <div class="container">
       <div class="prev">
-        <a v-if="prev" class="link" :href="withBase(prev.link)">
+        <a v-if="prev" class="link" :href="withBase(prev.link)" :title="prev.text">
           <ArrowLeft class="icon icon-prev" />
           <span class="text">{{ prev.text }}</span>
         </a>
       </div>
       <div class="next">
-        <a v-if="next" class="link" :href="withBase(next.link)">
+        <a v-if="next" class="link" :href="withBase(next.link)" :title="next.text">
           <span class="text">{{ next.text }}</span>
           <ArrowRight class="icon icon-next" />
         </a>
@@ -62,6 +62,12 @@ const { hasLinks, prev, next } = useNextAndPrevLinks()
   max-width: 100%;
   font-size: 1rem;
   font-weight: 500;
+  color: inherit;
+  text-decoration: inherit;
+  transition: color 0.25s;
+}
+.link:hover {
+  color: var(--c-brand);
 }
 
 .text {

@@ -3,18 +3,18 @@ import { useData } from 'vitepress'
 
 export function useNextAndPrevLinks() {
   const { theme, page } = useData()
-  const { pages } = theme.value as { pages: { title: string, path: string }[] }
+  const { blogs } = theme.value as { blogs: { title: string, path: string }[] }
   
 
   const prev = computed(() => {
     const path = page.value.relativePath.replace(/\.md$/g, '')
-    for (let i = 0; i < pages.length; i++) {
-      const context = pages[i]
+    for (let i = 0; i < blogs.length; i++) {
+      const context = blogs[i]
       if (context.path === path) {
         if (i > 0) {
           return {
-            text: pages[i - 1].title,
-            link: pages[i - 1].path
+            text: blogs[i - 1].title,
+            link: blogs[i - 1].path
           }
         }
       }
@@ -23,13 +23,13 @@ export function useNextAndPrevLinks() {
 
   const next = computed(() => {
     const path = page.value.relativePath.replace(/\.md$/g, '')
-    for (let i = 0; i < pages.length; i++) {
-      const context = pages[i]
+    for (let i = 0; i < blogs.length; i++) {
+      const context = blogs[i]
       if (context.path === path) {
-        if (i + 1 < pages.length) {
+        if (i + 1 < blogs.length) {
           return {
-            text: pages[i + 1].title,
-            link: pages[i + 1].path
+            text: blogs[i + 1].title,
+            link: blogs[i + 1].path
           }
         }
       }
@@ -40,19 +40,19 @@ export function useNextAndPrevLinks() {
   //   const path = page.value.relativePath.replace(/\.md$/g, '')
   //   let next: { text: string, link: string } | null = null
   //   let prev: { text: string, link: string } | null = null
-  //   for (let i = 0; i < pages.length; i++) {
-  //     const context = pages[i]
+  //   for (let i = 0; i < blogs.length; i++) {
+  //     const context = blogs[i]
   //     if (context.path === path) {
   //       if (i > 0) {
   //         prev = {
-  //           text: pages[i - 1].title,
-  //           link: pages[i - 1].path
+  //           text: blogs[i - 1].title,
+  //           link: blogs[i - 1].path
   //         }
   //       }
-  //       if (i + 1 < pages.length) {
+  //       if (i + 1 < blogs.length) {
   //         next = {
-  //           text: pages[i + 1].title,
-  //           link: pages[i + 1].path
+  //           text: blogs[i + 1].title,
+  //           link: blogs[i + 1].path
   //         }
   //       }
   //       break

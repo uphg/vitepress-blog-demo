@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { useData, withBase } from 'vitepress'
-const { theme } = useData()
+const { theme, site } = useData()
 const { nav } = theme.value
 </script>
 
 <template>
   <header class="nav-bar">
     <div class="nav-container">
-      <span class="nav-title">xxx 的个人博客</span>
+      <a class="nav-button nav-title" href="/">{{ site.title }}</a>
       <a
-        class="nav-item"
+        class="nav-button nav-item"
         v-for="(item, index) in nav"
         :key="index"
         :href="withBase(item.link)"
@@ -20,8 +20,7 @@ const { nav } = theme.value
 
 <style scoped>
 .nav-bar {
-  height: 60px;
-  padding: 1rem 0;
+  padding: 1.5rem 0;
   font-size: 14px;
 }
 .nav-container {
@@ -35,10 +34,16 @@ const { nav } = theme.value
   margin-right: auto;
 }
 
-.nav-item {
+.nav-button {
   color: inherit;
   text-decoration: inherit;
-  margin-left: 16px;
+  transition: color 0.25s;
+}
+.nav-button:hover {
+  color: var(--c-brand);
 }
 
+.nav-item {
+  margin-left: 16px;
+}
 </style>

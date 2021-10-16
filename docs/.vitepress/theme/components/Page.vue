@@ -10,7 +10,7 @@ import NextAndPrevLinks from './NextAndPrevLinks.vue'
       <slot name="top" />
 
       <PageHeader />
-      <Content class="content" />
+      <Content class="content markdown-body" />
       <PageFooter />
       <NextAndPrevLinks />
 
@@ -32,6 +32,7 @@ import NextAndPrevLinks from './NextAndPrevLinks.vue'
 
 .content {
   padding-bottom: 1.5rem;
+  min-height: 50vh;
 }
 
 @media (max-width: 420px) {

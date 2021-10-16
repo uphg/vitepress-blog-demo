@@ -1,4 +1,4 @@
-import { createPages } from './utils/createPages'
+import { createBlogs } from './utils/createBlogs'
 
 // import fs from 'fs'
 // import p from 'path'
@@ -23,18 +23,19 @@ import fg from 'fast-glob'
 
 
 export default async () => {
-  const pagePaths = await fg(['docs/**/*.md']); // 获取所有 markdown 文件路径
-  const pages = createPages(pagePaths)
-  console.log('pages')
-  console.log(pages)
+  const blogFilePaths = await fg(['docs/**/*.md']); // 获取所有博客的 markdown 文件路径
+  const blogs = createBlogs(blogFilePaths)
+  console.log('blogs')
+  console.log(blogs)
 
   return {
-    title: 'Hello VitePress',
+    hiConfig: 'hello World',
+    title: '吕恒的个人博客',
     description: 'Just playing around.',
     themeConfig: {
-      pages,
-      // _blogs: blogs,
+      blogs,
       // searchMaxSuggestions: 10,
+      author: '吕恒',
       nav: [
         { text: '首页', link: '/' },
         { text: '归档', link: '/archive/' },
@@ -67,5 +68,8 @@ export default async () => {
         },
       ]
     },
+    markdown: {
+      lineNumbers: true
+    }
   }
 }
