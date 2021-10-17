@@ -62,7 +62,7 @@ defineProps<{
 .blog-item .meta {
   padding-top: 8px;
   font-size: 16px;
-  color: #909090;
+  color: #a9a9b3;
   display: flex;
   align-items: center;
 }
