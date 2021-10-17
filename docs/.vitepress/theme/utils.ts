@@ -96,7 +96,8 @@ export function displayTime(time: number | string): string {
   if (!time) return ''
   const currentTime = new Date().getTime()
   const blogTime = new Date(time).getTime()
-  const oneYear = 365 * 24 * 3600 * 1000
+  const oneDay = 24 * 3600 * 1000
+  const oneYear = 365 * oneDay - (31 * oneDay)
   const lastYearToday = currentTime - oneYear
 
   return blogTime - lastYearToday > 0 ? dayjs(time).fromNow() : dayjs(time).format('YYYY-MM-DD')

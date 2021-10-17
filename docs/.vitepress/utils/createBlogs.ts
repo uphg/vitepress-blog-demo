@@ -26,7 +26,7 @@ export const createBlogs = (blogs: string[]) => {
 
     if (hasKeys(frontmatter, ['home', 'isArchive', 'isTags', 'isAbout'])) continue
     newBlogs.push({
-      path: filePath.replace(/(^docs\/)|(\.md$)/g, ''),
+      path: filePath.replace(/(^docs\/)|(\.(md|html))?$/g, ''),
       title,
       date,
       tags

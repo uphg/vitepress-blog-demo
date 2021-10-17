@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { useData } from 'vitepress'
+import { displayTime } from '../utils'
 
 const { theme, page } = useData()
 
@@ -19,7 +20,7 @@ const datetime = ref('')
 onMounted(() => {
   // locale string might be different based on end user
   // and will lead to potential hydration mismatch if calculated at build time
-  datetime.value = new Date(page.value.lastUpdated).toLocaleString('en-US')
+  datetime.value = displayTime(new Date(page.value.lastUpdated).toLocaleString('en-US'))
 })
 </script>
 
