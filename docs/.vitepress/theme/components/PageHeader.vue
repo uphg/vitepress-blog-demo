@@ -20,18 +20,22 @@ const author = computed(() => frontmatter.value.author || theme.value.author)
 </template>
 
 <style scoped>
+.page-header {
+  text-align: center;
+  padding: 2em;
+}
 
 .page-title {
   margin: 1em 0 0;
   font-size: 2em;
 }
 .page-header .meta {
-  padding-top: 10px;
+  padding-top: 1em;
   color: #909090;
   font-size: 14px;
   display: flex;
   align-items: center;
-  
+  justify-content: center;
 }
 .author {
   color: var(--c-text);

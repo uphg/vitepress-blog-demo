@@ -1,4 +1,4 @@
-export const createBlogList = (existingBlogs) => {
+export const mockBlogList = (existingBlogs) => {
   const newBlogList = []
   const oneDay = 24 * 3600 * 1000
   const oneYear = 365 * oneDay

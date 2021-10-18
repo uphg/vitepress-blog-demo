@@ -1,24 +1,13 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { useData } from 'vitepress'
-import Pagination from './Pagination.vue';
 import Intro from './Intro.vue'
 import BlogList from './BlogList.vue'
 import HomeFooter from './HomeFooter.vue'
-import { createBlogList } from '../../mock/createBlogList'
+import { mockBlogList } from '../../mock/mockBlogList'
 
 const { theme, frontmatter } = useData()
-
-const pageSize = 10
-const blogs = ref(createBlogList(theme.value.blogs))
-const currentPage = ref(1)
-
-const blogTotal = computed(() => blogs.value.length)
-const currentBlogList = computed(() => {
-  const start = pageSize * (currentPage.value - 1)
-  const end = start + pageSize > blogTotal.value ? blogTotal.value : start + pageSize
-  return blogs.value.slice(start, end)
-})
+const blogs = ref(mockBlogList(theme.value.blogs))
 </script>
 
 <template>
@@ -29,12 +18,7 @@ const currentBlogList = computed(() => {
         :avatar="frontmatter.avatar"
         :description="frontmatter.description"
       />
-      <BlogList :blogs="currentBlogList" />
-      <Pagination
-        v-model:page="currentPage"
-        :page-size="pageSize"
-        :total="blogTotal"
-      />
+      <BlogList :blogs="blogs" />
     </div>
     <HomeFooter />
   </main>

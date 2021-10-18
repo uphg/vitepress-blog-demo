@@ -7,6 +7,7 @@ const getCurrentYear = (archives: Archive[], date?: string) => {
     }
   }
 }
+
 const createArchives = (blogs: BlogType[]) => {
   const newArchives = [] as Archive[]
   for (const blog of blogs) {
@@ -34,7 +35,7 @@ const createArchives = (blogs: BlogType[]) => {
 
 <script setup lang="ts">
 import { useData, withBase } from 'vitepress'
-import { createBlogList } from '../../mock/createBlogList'
+import { mockBlogList } from '../../mock/mockBlogList'
 import dayjs from 'dayjs'
 import { BlogType } from 'docs/.vitepress/utils/interface'
 
@@ -44,16 +45,14 @@ interface Archive {
 }
 
 const { theme } = useData()
-const blogs = createBlogList(theme.value.blogs)
-
+const blogs = mockBlogList(theme.value.blogs)
 const archives = createArchives(blogs)
-
 const displayDate = (time?: string | number) => dayjs(time).format('YYYY-MM-DD HH:mm')
 </script>
 
 <template>
   <div class="archive">
-    <h2>归档</h2>
+    <h2 class="column-title">归档</h2>
     <div
       v-for="(item, index) in archives"
       :key="index + 'archive'"
@@ -65,7 +64,7 @@ const displayDate = (time?: string | number) => dayjs(time).format('YYYY-MM-DD H
         v-for="(blog, i) in item.list"
         :key="i"
       >
-        <a :href="withBase(blog.path)" class="titile">{{ blog.title }}</a>
+        <a :href="withBase(blog.path)" class="title">{{ blog.title }}</a>
         <span class="date">{{ displayDate(blog.date) }}</span>
       </div>
     </div>
@@ -73,24 +72,27 @@ const displayDate = (time?: string | number) => dayjs(time).format('YYYY-MM-DD H
 </template>
 
 <style scoped lang="stylus">
-.archive {
-  margin: 0 auto;
-  padding: 0 1.5rem 4rem;
-  max-width: var(--c-main-width);
-  .year-part {
+.archive
+  margin 0 auto
+  padding 0 1.5rem 4rem
+  max-width var(--c-main-width)
+  .year-part
     margin-bottom 20px
-  }
-  .year {
-    margin: 0;
-  }
-}
-.archive-item {
-  font-size: 14px;
-  display: flex;
-  justify-content: space-between;
-  margin: 10px 0 10px 20px;
-  .date {
-    color: #a9a9b3;
-  }
-}
+  .year
+    margin 0
+
+.archive-item
+  font-size 16px
+  display flex
+  justify-content space-between
+  margin 0.8em 0 0.8em 1em
+  .title
+    color inherit
+    text-decoration inherit
+    &:hover
+      color var(--c-brand)
+  .date
+    font-family -apple-system, helvetica neue, Helvetica, sans-serif
+    color #a9a9b3
+
 </style>

@@ -1,8 +1,6 @@
-import fs from 'fs'
-import p from 'path'
-import matter from 'gray-matter'
 import orderBy from 'lodash.orderby'
 import { BlogType } from './interface'
+import { getMatter } from './getMatter'
 
 const hasKeys = (obj, keys) => {
   for (const key of keys) {
@@ -10,21 +8,20 @@ const hasKeys = (obj, keys) => {
   }
 }
 
-export const createBlogs = (blogs: string[]) => {
+export const createBlogs = (filePaths: string[]) => {
   // 根据时间排序
-  const orderBlogs = orderBy(blogs, (filePath) => {
-    const source = fs.readFileSync(p.resolve(filePath), 'utf8');
-    const { data: frontmatter } = matter(source)
+  const newBlogs: BlogType[] = []
+  const orderBlogs = orderBy(filePaths, (filePath) => {
+    const { frontmatter } = getMatter(filePath)
     return new Date(frontmatter.date || 0).getTime()
   }, 'desc')
 
-  const newBlogs: BlogType[] = []
   for (const filePath of orderBlogs) {
-    const source = fs.readFileSync(p.resolve(filePath), 'utf8');
-    const { data: frontmatter } = matter(source)
+    const { frontmatter } = getMatter(filePath)
     const { title, date, tags } = frontmatter
 
     if (hasKeys(frontmatter, ['home', 'isArchive', 'isTags', 'isAbout'])) continue
+
     newBlogs.push({
       path: filePath.replace(/(^docs\/)|(\.(md|html))?$/g, ''),
       title,

@@ -1,18 +1,26 @@
 import { createBlogs } from './utils/createBlogs'
 import fg from 'fast-glob'
+import { createTags } from './utils/createTags';
 
 export default async () => {
   const blogFilePaths = await fg(['docs/**/*.md']); // 获取所有博客的 markdown 文件路径
   const blogs = createBlogs(blogFilePaths)
+  const tags = createTags(blogFilePaths)
   console.log('blogs')
   console.log(blogs)
+  console.log('tags')
+  console.log(tags)
 
   return {
     hiConfig: 'hello World',
     title: '吕恒的个人博客',
     description: 'Just playing around.',
+    head: [
+      ['link', {rel: 'stylesheet', href: '/font/index.css'}],
+    ],
     themeConfig: {
       blogs,
+      tags,
       // searchMaxSuggestions: 10,
       author: '吕恒',
 

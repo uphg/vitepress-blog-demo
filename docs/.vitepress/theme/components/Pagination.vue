@@ -20,24 +20,64 @@ const setCurrentPage = (value: number) => {
   emit('update:page', value)
 }
 
+const prev = () => {
+  if (props.page <= 1) return
+  setCurrentPage(props.page - 1)
+}
+
+const next = () => {
+  if (props.page >= pageTotal.value) return
+  setCurrentPage(props.page + 1)
+}
+
 const pageTotal = computed(() => Math.ceil(props.total / props.pageSize))
 </script>
 
 <template>
   <div class="pagination">
-    <button>上一页</button>
+    <button
+      :disabled="page <= 1"
+      @click="prev"
+      class="button-prev"
+    >上一页</button>
     <button
       v-for="item in pageTotal"
       :key="item"
       @click="setCurrentPage(item)"
+      :class="[
+        'button-number',
+        { active: item === page }
+      ]"
     >{{ item }}</button>
-    <button>下一页</button>
+    <button
+      :disabled="page >= pageTotal"
+      @click="next"
+      class="button-next"
+    >下一页</button>
   </div>
 </template>
 
-<style>
-.pagination {
-  text-align: center;
-  padding-top: 20px;
-}
+<style lang="stylus">
+.pagination
+  text-align center
+  padding-top 20px
+  .button-number, .button-next, .button-prev
+    border none
+    cursor pointer
+    border-radius 4px
+    min-width 30px
+    background-color #eff1fa
+    color #3850b7
+    font-size 14px
+    line-height 2
+    padding 0 4px
+    margin 0 5px
+    &:hover, &.active
+      background-color #485fc7
+      color #fff
+    &:disabled
+      color #c0c4cc
+      &:hover
+        background-color #eff1fa
+
 </style>

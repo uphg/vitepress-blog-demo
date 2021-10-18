@@ -35,9 +35,9 @@ defineProps<{
 @require '../styles/mixins'
 
 .blog-item {
-  padding: 16px 20px;
   color: inherit;
   text-decoration: inherit;
+  padding: 16px 20px;
   display: block;
   border-radius: 5px;
   /* margin-bottom: 1.5em; */
