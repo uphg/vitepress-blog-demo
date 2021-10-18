@@ -55,8 +55,8 @@ const tagBlogs = computed(() => {
   min-height 2em
   display inline-block
   padding 4px 10px
-  background-color #eff1fa
   font-size 14px
+  background-color #eff1fa
   color #3850b7
   border-radius 4px
   &.active
