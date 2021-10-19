@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { withBase } from 'vitepress'
+
 defineProps<{
   avatar: string // 总条数
   description?: string // 当前页
@@ -9,7 +11,7 @@ defineProps<{
   <div class="intro">
     <div class="avatar" v-if="avatar">
       <a class="avatar-link" href="">
-        <img class="avatar-img" :src="avatar" alt="个人头像">
+        <img class="avatar-img" :src="withBase(avatar)" alt="个人头像">
       </a>
     </div>
     <p class="description">{{ description }}</p>
