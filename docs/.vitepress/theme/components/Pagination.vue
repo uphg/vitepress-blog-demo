@@ -34,7 +34,7 @@ const pageTotal = computed(() => Math.ceil(props.total / props.pageSize))
 </script>
 
 <template>
-  <div class="pagination">
+  <div v-if="page > 1" class="pagination">
     <button
       :disabled="page <= 1"
       @click="prev"

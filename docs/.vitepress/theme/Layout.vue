@@ -33,5 +33,5 @@ const mainContent = computed(() => {
     <component v-else :is="mainContent"></component>
 
   </div>
-  <Debug />
+  <!-- <Debug /> -->
 </template>

@@ -43,7 +43,12 @@ const onUp = () => {
 }
 
 const onDown = () => {
-  if (focusIndex.value && focusIndex.value >= suggestions.value.length - 1) return
+  if (suggestions.value.length <= 0) return
+
+  if (focusIndex.value !== null && focusIndex.value >= suggestions.value.length - 1) {
+    focusIndex.value = suggestions.value.length - 1
+    return
+  }
 
   if (typeof focusIndex.value === 'number') {
     focusIndex.value += 1
