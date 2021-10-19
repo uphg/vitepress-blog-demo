@@ -1,11 +1,10 @@
 <script setup lang="ts">
 import { useData } from 'vitepress'
-import { mockBlogList } from '../../mock/mockBlogList'
 import { createArchives } from '../composables/archive'
 import ArchiveItem from './ArchiveItem.vue'
 
 const { theme } = useData()
-const blogs = mockBlogList(theme.value.blogs)
+const blogs = theme.value.blogs
 const archives = createArchives(blogs)
 </script>
 

@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useData, withBase, useRouter } from 'vitepress'
-import { mockBlogList } from '../../mock/mockBlogList'
+import { BlogType } from 'docs/.vitepress/utils/interface'
 
 const { theme } = useData()
 const { go } = useRouter()
-const blogs = mockBlogList(theme.value.blogs)
+const blogs = theme.value.blogs
 const text = ref('')
 const focused = ref(false)
 const focusIndex = ref<number | null>(null)
@@ -16,7 +16,7 @@ const displaySuggestions = computed(() => {
 const suggestions = computed(() => {
   if (text.value) {
     const max = 20
-    const result = blogs.filter((blog) => {
+    const result = blogs.filter((blog: BlogType) => {
       return blog.title.toLowerCase().includes(text.value.toLowerCase())
     })
     return result.length > 10 ? result.slice(0, max) : result

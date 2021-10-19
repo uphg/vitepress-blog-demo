@@ -4,10 +4,9 @@ import { useData } from 'vitepress'
 import Intro from './Intro.vue'
 import BlogList from './BlogList.vue'
 import HomeFooter from './HomeFooter.vue'
-import { mockBlogList } from '../../mock/mockBlogList'
 
 const { theme, frontmatter } = useData()
-const blogs = ref(mockBlogList(theme.value.blogs))
+const blogs = ref(theme.value.blogs)
 </script>
 
 <template>

@@ -1,19 +1,19 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useData } from 'vitepress'
-import { mockBlogList } from '../../mock/mockBlogList'
-import BlogListx from './BlogList.vue'
+import BlogList from './BlogList.vue'
+import { BlogType } from 'docs/.vitepress/utils/interface'
 
 const activeIndex = ref<number | null>(null)
 const { theme } = useData()
 const getTags = computed(() => theme.value.tags)
 
-const blogs = ref(mockBlogList(theme.value.blogs))
+const blogs = ref(theme.value.blogs)
 
 const tagBlogs = computed(() => {
   const index = activeIndex.value
 
-  return index || index === 0 ? blogs.value.filter((blog) => {
+  return index || index === 0 ? blogs.value.filter((blog: BlogType) => {
     const tag = getTags.value[index]
     return blog?.tags?.includes(tag)
   }) || [] : blogs.value
@@ -43,7 +43,7 @@ const clickTag = (index: number) => {
         @click="clickTag(index)"
       >{{ item }}</button>
     </section>
-    <BlogListx :blogs="tagBlogs" />
+    <BlogList :blogs="tagBlogs" />
   </div>
 </template>
 
