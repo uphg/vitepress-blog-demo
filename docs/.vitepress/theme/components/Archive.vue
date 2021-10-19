@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { useData/*,  withBase */ } from 'vitepress'
-// import dayjs from 'dayjs'
+import { useData } from 'vitepress'
 import { mockBlogList } from '../../mock/mockBlogList'
 import { createArchives } from '../composables/archive'
 import ArchiveItem from './ArchiveItem.vue'
@@ -8,7 +7,6 @@ import ArchiveItem from './ArchiveItem.vue'
 const { theme } = useData()
 const blogs = mockBlogList(theme.value.blogs)
 const archives = createArchives(blogs)
-// const displayDate = (time?: string | number) => dayjs(time).format('YYYY-MM-DD HH:mm')
 </script>
 
 <template>
@@ -25,14 +23,6 @@ const archives = createArchives(blogs)
         :key="i"
         :item="blog"
       />
-      <!-- <div
-        class="archive-item"
-        v-for="(blog, i) in item.list"
-        :key="i"
-      >
-        <a :href="withBase(blog.path)" class="title">{{ blog.title }}</a>
-        <span class="date">{{ displayDate(blog.date) }}</span>
-      </div> -->
     </div>
   </div>
 </template>
@@ -46,19 +36,5 @@ const archives = createArchives(blogs)
     margin-bottom 20px
   .year
     margin 0
-
-// .archive-item
-//   font-size 16px
-//   display flex
-//   justify-content space-between
-//   margin 0.8em 0 0.8em 1em
-//   .title
-//     color inherit
-//     text-decoration inherit
-//     &:hover
-//       color var(--c-brand)
-//   .date
-//     font-family -apple-system, helvetica neue, Helvetica, sans-serif
-//     color #a9a9b3
 
 </style>
