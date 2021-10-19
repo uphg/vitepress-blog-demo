@@ -11,3 +11,20 @@ divider-style()
   vertical-align: middle;
   position: relative;
   background-color: var(--c-divider);
+
+placeholder-color(color)
+  &::placeholder
+    color color
+  &::-webkit-input-placeholder
+    color color
+  &:-moz-placeholder
+    color color
+  &::-moz-placeholder
+    color color
+  &:-ms-input-placeholder
+    color color
+
+text-ellipsis()
+  white-space nowrap
+  overflow hidden
+  text-overflow ellipsis

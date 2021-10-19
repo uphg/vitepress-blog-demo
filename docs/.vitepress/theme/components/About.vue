@@ -1,6 +1,7 @@
 <template>
   <div class="about">
     <h2 class="column-title">关于我</h2>
+    <Content class="about-content markdown-body" />
   </div>
 </template>
 

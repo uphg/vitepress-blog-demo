@@ -60,7 +60,7 @@ const pageTotal = computed(() => Math.ceil(props.total / props.pageSize))
 <style lang="stylus">
 .pagination
   text-align center
-  padding-top 20px
+  padding-top 3em
   .button-number, .button-next, .button-prev
     border none
     cursor pointer
@@ -70,14 +70,13 @@ const pageTotal = computed(() => Math.ceil(props.total / props.pageSize))
     color #3850b7
     font-size 14px
     line-height 2
-    padding 0 4px
+    padding 0 8px
     margin 0 5px
     &:hover, &.active
       background-color #485fc7
       color #fff
     &:disabled
       color #c0c4cc
-      &:hover
-        background-color #eff1fa
+      background-color #eff1fa        
 
 </style>

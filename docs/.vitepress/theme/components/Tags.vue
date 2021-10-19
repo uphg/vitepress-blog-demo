@@ -4,20 +4,29 @@ import { useData } from 'vitepress'
 import { mockBlogList } from '../../mock/mockBlogList'
 import BlogListx from './BlogList.vue'
 
-const currentTagIndex = ref<number | null>(null)
+const activeIndex = ref<number | null>(null)
 const { theme } = useData()
 const getTags = computed(() => theme.value.tags)
 
 const blogs = ref(mockBlogList(theme.value.blogs))
 
 const tagBlogs = computed(() => {
-  const index = currentTagIndex.value
+  const index = activeIndex.value
 
   return index || index === 0 ? blogs.value.filter((blog) => {
     const tag = getTags.value[index]
     return blog?.tags?.includes(tag)
   }) || [] : blogs.value
 })
+
+const clickTag = (index: number) => {
+  if (activeIndex.value === index) {
+    activeIndex.value = null
+    return
+  }
+
+  activeIndex.value = index
+}
 </script>
 
 <template>
@@ -29,9 +38,9 @@ const tagBlogs = computed(() => {
         :key="index"
         :class="[
           'tag-button',
-          { active: currentTagIndex === index }
+          { active: activeIndex === index }
         ]"
-        @click="currentTagIndex = index"
+        @click="clickTag(index)"
       >{{ item }}</button>
     </section>
     <BlogListx :blogs="tagBlogs" />
@@ -47,7 +56,7 @@ const tagBlogs = computed(() => {
 .tags-container
   display flex
   align-items center
-  padding 0 20px 2rem
+  padding 0 20px 1rem
 
 .tag-button
   border none
@@ -59,10 +68,9 @@ const tagBlogs = computed(() => {
   background-color #eff1fa
   color #3850b7
   border-radius 4px
+  margin-right 1em
+  margin-bottom 1em
   &.active
     background-color #485fc7
     color #fff
-  &:not(:last-child)
-    margin-right 1em
-
 </style>

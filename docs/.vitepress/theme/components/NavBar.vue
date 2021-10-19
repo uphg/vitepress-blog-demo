@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { useData, withBase } from 'vitepress'
+import Search from './Search.vue'
+
 const { theme, site } = useData()
 const { nav } = theme.value
 </script>
@@ -8,6 +10,7 @@ const { nav } = theme.value
   <header class="nav-bar">
     <div class="nav-container">
       <a class="nav-button nav-title" href="/">{{ site.title }}</a>
+      <Search />
       <a
         class="nav-button nav-item"
         v-for="(item, index) in nav"
@@ -18,7 +21,7 @@ const { nav } = theme.value
   </header>
 </template>
 
-<style scoped>
+<style scoped lang="stylus">
 .nav-bar {
   padding: 1.5rem 0;
   font-size: 14px;
@@ -28,6 +31,10 @@ const { nav } = theme.value
   padding: 0 1.5rem;
   max-width: var(--c-main-width);
   display: flex;
+  align-items: center;
+  .search {
+    margin-left: 16px;
+  }
 }
 
 .nav-title {

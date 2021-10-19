@@ -1,6 +1,7 @@
 <script setup lang="ts">
+import { withBase } from 'vitepress'
 import { displayTime } from '../utils'
-import { BlogType } from '../../utils/interface'
+import { BlogType } from 'docs/.vitepress/utils/interface'
 
 defineProps<{
   item: BlogType
@@ -10,7 +11,7 @@ defineProps<{
 <template>
   <a
     class="blog-item"
-    :href="item.path"
+    :href="withBase(item.path)"
   >
     <h2 class="title-content">
       <span class="title" :title="item.title">{{ item.title }}</span>
@@ -55,9 +56,7 @@ defineProps<{
   align-items: flex-end;
 }
 .blog-item .title {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  text-ellipsis()
 }
 .blog-item .meta {
   padding-top: 8px;

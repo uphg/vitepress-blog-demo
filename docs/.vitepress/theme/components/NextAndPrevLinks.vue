@@ -27,7 +27,9 @@ const { hasLinks, prev, next } = useNextAndPrevLinks()
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="stylus">
+@require '../styles/mixins'
+
 .next-and-prev-link {
   padding-top: 1rem;
 }
@@ -72,9 +74,7 @@ const { hasLinks, prev, next } = useNextAndPrevLinks()
 
 .text {
   display: block;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  text-ellipsis()
 }
 
 .icon {
