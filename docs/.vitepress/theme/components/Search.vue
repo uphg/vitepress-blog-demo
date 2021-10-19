@@ -15,9 +15,11 @@ const displaySuggestions = computed(() => {
 })
 const suggestions = computed(() => {
   if (text.value) {
-    return blogs.filter((blog) => {
+    const max = 20
+    const result = blogs.filter((blog) => {
       return blog.title.toLowerCase().includes(text.value.toLowerCase())
-    }) || []
+    })
+    return result.length > 10 ? result.slice(0, max) : result
   }
   return []
 }) 
