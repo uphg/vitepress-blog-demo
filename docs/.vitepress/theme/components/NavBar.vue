@@ -9,7 +9,7 @@ const { nav } = theme.value
 <template>
   <header class="nav-bar">
     <div class="nav-container">
-      <a class="nav-button nav-title" href="/">{{ site.title }}</a>
+      <a class="nav-button nav-title" :href="withBase('/')">{{ site.title }}</a>
       <Search />
       <a
         class="nav-button nav-item"
