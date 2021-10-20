@@ -1,11 +1,21 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { useData } from 'vitepress'
 const { frontmatter, theme } = useData()
 
-const location = document.location;
 const author = computed(() => frontmatter.value.author || theme.value.author)
-const address = computed(() => location.origin + location.pathname)
+const link = ref<string>('')
+
+const setLink = () => {
+  if (document?.location) {
+    const location = document.location
+    link.value = location.origin + location.pathname
+  }
+}
+
+onMounted(() => {
+  setLink()
+})
 </script>
 
 <template>
@@ -16,7 +26,7 @@ const address = computed(() => location.origin + location.pathname)
     </p>
     <p class="copyright-item">
       <span>链接：</span>
-      <a class="link" :href="address">{{ address }}</a>
+      <a class="link" :href="link">{{ link }}</a>
     </p>
     <p class="copyright-item lincese">
       <span>本文采用</span>
