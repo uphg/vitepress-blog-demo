@@ -11,6 +11,7 @@ export default async () => {
     base: '/blog/',
     title: '吕恒的个人博客',
     description: 'Just playing around.',
+    xxxset: 'hi',
     head: [
       ['link', {rel: 'stylesheet', href: '/font/index.css'}],
     ],

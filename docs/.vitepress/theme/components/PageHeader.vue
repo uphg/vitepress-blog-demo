@@ -21,8 +21,8 @@ const author = computed(() => frontmatter.value.author || theme.value.author)
 
 <style scoped>
 .page-header {
-  text-align: center;
-  padding: 2em;
+  /* text-align: center; */
+  padding: 2em 0;
 }
 
 .page-title {
@@ -35,7 +35,7 @@ const author = computed(() => frontmatter.value.author || theme.value.author)
   font-size: 14px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
 }
 .author {
   color: var(--c-text);

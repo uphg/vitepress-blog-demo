@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import { withBase } from 'vitepress'
+import { computed } from 'vue'
+import { useData, withBase } from 'vitepress'
 
-defineProps<{
-  avatar: string // 总条数
-  description?: string // 当前页
-}>()
+const { frontmatter, site } = useData()
+const { avatar } = frontmatter.value
+
+const description = computed(() => site.value.description || frontmatter.value.description)
+
 </script>
 
 <template>
@@ -14,11 +16,11 @@ defineProps<{
         <img class="avatar-img" :src="withBase(avatar)" alt="个人头像">
       </a>
     </div>
-    <p class="description">{{ description }}</p>
+    <p class="description" v-if="description">{{ description }}</p>
   </div>
 </template>
 
-<style>
+<style scoped>
 .intro {
   text-align: center;
   padding: 4em 0 4em;

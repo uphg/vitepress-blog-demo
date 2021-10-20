@@ -5,18 +5,14 @@ import Intro from './Intro.vue'
 import BlogList from './BlogList.vue'
 import HomeFooter from './HomeFooter.vue'
 
-const { theme, frontmatter } = useData()
+const { theme } = useData()
 const blogs = ref(theme.value.blogs)
 </script>
 
 <template>
   <main class="home">
     <div class="home-content">
-      <Intro
-        v-if="frontmatter.avatar"
-        :avatar="frontmatter.avatar"
-        :description="frontmatter.description"
-      />
+      <Intro />
       <BlogList :blogs="blogs" />
     </div>
     <HomeFooter />
