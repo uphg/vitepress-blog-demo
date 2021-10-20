@@ -29,6 +29,7 @@ const displayDate = (time?: string | number) => dayjs(time).format('YYYY-MM-DD H
     color inherit
     text-decoration inherit
     width calc(100% - 8.5em)
+    transition color 0.25s
     text-ellipsis()
     &:hover
       color var(--c-brand)
