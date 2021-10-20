@@ -26,7 +26,7 @@ onMounted(() => {
 
 <template>
   <p v-if="hasLastUpdated" class="last-updated">
-    <span class="prefix">{{ prefix }}:</span>
+    <span class="prefix">{{ prefix }}：</span>
     <span class="datetime">{{ datetime }}</span>
   </p>
 </template>
@@ -53,7 +53,7 @@ onMounted(() => {
 
 .datetime {
   display: inline-block;
-  margin-left: 6px;
+  /* margin-left: 6px; */
   font-weight: 400;
 }
 </style>

@@ -130,7 +130,7 @@ const unfocus = () => {
         color var(--c-brand)
 
   .search
-    min-width 160px
+    max-width 160px
     padding 3px 6px
     border-radius 2px
     border 1px solid #d9d9d9

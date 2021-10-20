@@ -3,31 +3,9 @@ import { computed } from 'vue'
 import { useData } from 'vitepress'
 const { frontmatter, theme } = useData()
 
-const author = computed(() => frontmatter.value.author || theme.value.author)
-
-const href = window.location.href;
-const protocol = window.location.protocol;
-const host = window.location.host;
-const URL = document.URL;
 const location = document.location;
-
-const address = computed(() => document.location.origin + document.location.pathname)
-
-console.log('href')
-console.log(href)
-
-console.log('protocol')
-console.log(protocol)
-
-console.log('host')
-console.log(host)
-
-console.log('URL')
-console.log(URL)
-
-console.log('location')
-console.log(location)
-
+const author = computed(() => frontmatter.value.author || theme.value.author)
+const address = computed(() => location.origin + location.pathname)
 </script>
 
 <template>
@@ -54,6 +32,8 @@ console.log(location)
 </template>
 
 <style lang="stylus">
+@require '../styles/mixins'
+
 .page-copyright
   padding 0.8rem 1.2rem
   margin 1rem 0
@@ -63,6 +43,7 @@ console.log(location)
   // background-color #fafafa
   .copyright-item
     margin 8px 0
+    text-ellipsis()
     &.lincese
       font-weight bold
     .link

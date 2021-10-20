@@ -53,4 +53,9 @@ const { nav } = theme.value
 .nav-item {
   margin-left: 16px;
 }
+@media (max-width: 719px) {
+  .nav-item {
+    display: none;
+  }
+}
 </style>

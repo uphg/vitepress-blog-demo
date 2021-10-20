@@ -29,4 +29,10 @@ const blogs = ref(theme.value.blogs)
   padding: 0 1.5rem 4rem;
   max-width: calc(var(--c-main-width) + 40px);
 }
+
+@media (max-width: 768px) {
+  .home-content {
+    padding: 0 0 4rem;
+  }
+}
 </style>

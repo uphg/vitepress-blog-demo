@@ -25,10 +25,11 @@ const { url, text } = useEditLink()
   font-size: 1rem;
   font-weight: 500;
   color: var(--c-text-light);
+  text-decoration: inherit;
+  transition: color 0.25s;
 }
 
 .link:hover {
-  text-decoration: none;
   color: var(--c-brand);
 }
 

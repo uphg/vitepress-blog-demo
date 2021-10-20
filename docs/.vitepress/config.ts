@@ -17,12 +17,8 @@ export default async () => {
     themeConfig: {
       blogs,
       tags,
-      // searchMaxSuggestions: 10,
+      searchMaxSuggestions: 20,
       author: '吕恒',
-
-      editLinks: true,
-      editLinkText: 'Edit this page on GitHub',
-
       lastUpdated: '最后更新时间',
       
       nav: [
@@ -31,31 +27,25 @@ export default async () => {
         { text: '标签', link: '/tags/' },
         { text: '关于', link: '/about/' },
       ],
-      // sidebar: [
-      //   {
-      //     text: '示例',   // 必要的
-      //     link: '/example/', // 可选的, 标题的跳转链接，应为绝对路径且必须存在
-      //     collapsable: false, // 可选的, 默认值是 true,
-      //     children: [
-      //       {
-      //         text: '介绍',
-      //         link: '/example/index',
-      //       },
-      //       {
-      //         text: '第一篇',
-      //         link: '/example/one',
-      //       },
-      //       {
-      //         text: '第二篇',
-      //         link: '/example/two',
-      //       },
-      //       {
-      //         text: '第三篇',
-      //         link: '/example/three',
-      //       }
-      //     ]
-      //   },
-      // ]
+
+      // 假定是 GitHub. 同时也可以是一个完整的 GitLab URL
+      repo: 'uphg/blog',
+      // 自定义仓库链接文字。默认从 `themeConfig.repo` 中自动推断为
+      // "GitHub"/"GitLab"/"Bitbucket" 其中之一，或是 "Source"。
+      repoLabel: '查看源码',
+
+      // 以下为可选的编辑链接选项
+
+      // 假如你的文档仓库和项目本身不在一个仓库：
+      // docsRepo: 'vuejs/vuepress',
+      // 假如文档不是放在仓库的根目录下：
+      docsDir: 'docs',
+      // 假如文档放在一个特定的分支下：
+      docsBranch: 'master',
+      // 默认是 false, 设置为 true 来启用
+      editLinks: true,
+      // 默认为 "Edit this page"
+      editLinkText: '在 GitHub 上编辑此页面'
     },
     markdown: {
       lineNumbers: true

@@ -32,7 +32,7 @@ const clickTag = (index: number) => {
 <template>
   <div class="tags">
     <h2 class="column-title">标签</h2>
-    <section class="tags-container">
+    <section class="tags-content">
       <button
         v-for="(item, index) in getTags"
         :key="index"
@@ -53,8 +53,9 @@ const clickTag = (index: number) => {
   padding 0 1.5rem 4rem
   max-width: calc(var(--c-main-width) + 40px);
 
-.tags-container
+.tags-content
   display flex
+  flex-wrap wrap
   align-items center
   padding 0 20px 1rem
 
@@ -73,4 +74,10 @@ const clickTag = (index: number) => {
   &.active
     background-color #485fc7
     color #fff
+
+@media (max-width: 768px) {
+  .tags {
+    padding 0 0 1rem
+  }
+}
 </style>
