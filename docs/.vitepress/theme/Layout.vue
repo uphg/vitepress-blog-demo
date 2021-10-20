@@ -31,7 +31,7 @@ const mainContent = computed(() => {
 
     <Content v-if="isCustomLayout" />
     <component v-else :is="mainContent"></component>
-
+    
   </div>
   <!-- <Debug /> -->
 </template>

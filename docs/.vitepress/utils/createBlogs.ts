@@ -12,12 +12,12 @@ export const createBlogs = (filePaths: string[]) => {
   // 根据时间排序
   const newBlogs: BlogType[] = []
   const orderBlogs = orderBy(filePaths, (filePath) => {
-    const { frontmatter } = getMatter(filePath)
-    return new Date(frontmatter.date || 0).getTime()
+    const { date } = getMatter(filePath)
+    return new Date(date || 0).getTime()
   }, 'desc')
 
   for (const filePath of orderBlogs) {
-    const { frontmatter } = getMatter(filePath)
+    const frontmatter = getMatter(filePath)
     const { title, date, tags } = frontmatter
 
     if (hasKeys(frontmatter, ['home', 'isArchive', 'isTags', 'isAbout'])) continue

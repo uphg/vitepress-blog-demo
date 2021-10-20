@@ -2,6 +2,7 @@
 import PageHeader from './PageHeader.vue'
 import PageFooter from './PageFooter.vue'
 import NextAndPrevLinks from './NextAndPrevLinks.vue'
+import PageCopyright from './PageCopyright.vue'
 </script>
 
 <template>
@@ -11,6 +12,7 @@ import NextAndPrevLinks from './NextAndPrevLinks.vue'
 
       <PageHeader />
       <Content class="content markdown-body" />
+      <PageCopyright />
       <PageFooter />
       <NextAndPrevLinks />
 
