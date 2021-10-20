@@ -8,6 +8,7 @@ export default async () => {
   const tags = createTags(blogFilePaths)
 
   return {
+    lang: 'zh-CN',
     base: '/blog/',
     title: '吕恒的个人博客',
     description: 'Just playing around.',

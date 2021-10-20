@@ -1,5 +1,6 @@
 ---
 home: true
+heroText: 首页
 avatar: /images/avatar.jpg
 actionText: 开始使用
 actionLink: /docs/install
